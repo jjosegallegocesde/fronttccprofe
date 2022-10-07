@@ -15,15 +15,7 @@ export class FormularioregistroComponent implements OnInit {
     public fabricaDiccionario:FormBuilder,
     public servicio:ServiciomercanciaService
     
-    ) { 
-
-      /*this.servicio.consultarMercancias()
-      .subscribe(respuesta=>{
-        console.log(respuesta);
-        
-      })*/
-
-    }
+    ) { }
 
   ngOnInit(): void {
 
@@ -32,15 +24,29 @@ export class FormularioregistroComponent implements OnInit {
   }
 
   buscarMercancia(){
-    console.log("buscando...");
-    console.log(this.formulario.value.iup)
     this.servicio.consultarMercancia(this.formulario.value.iup)
     .subscribe(respuesta=>{
+
       console.log(respuesta);
+      
+     
       this.formulario.patchValue({
-    
+        
+
+        tiporemitente:respuesta.tipoRemitente,
+        idremitente:respuesta.idRemitente,
         nombreremitente:respuesta.nombreRemitente,
-        idremitente:respuesta.idRemitente
+        deptoremitente:respuesta.deptoRemitente,
+        municipioremitente:respuesta.municipioRemitente,
+        direccionremitente:respuesta.direccionRemitente,
+
+        tipodestinatario:respuesta.tipoDestinatario,
+        iddestinatario:respuesta.idDestinatario,
+        nombredestinatario:respuesta.nombreDestinatario,
+        deptodestinatario:respuesta.deptoDestinatario,
+        municipiodestinatario:respuesta.municipioDestinatario,
+        direcciondestinatario:respuesta.direccionDestinatario,
+
         
       })
       
