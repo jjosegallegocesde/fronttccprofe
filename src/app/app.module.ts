@@ -11,6 +11,8 @@ import { FormularioregistroComponent } from './formularioregistro/formularioregi
 
 import {ReactiveFormsModule} from '@angular/forms'
 import {HttpClientModule} from '@angular/common/http'
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { GraficabarrasComponent } from './graficabarras/graficabarras.component';
 
 @NgModule({
   declarations: [
@@ -19,13 +21,15 @@ import {HttpClientModule} from '@angular/common/http'
     FooterComponent,
     MercanciaComponent,
     HomeComponent,
-    FormularioregistroComponent
+    FormularioregistroComponent,
+    GraficabarrasComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

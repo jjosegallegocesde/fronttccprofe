@@ -24,5 +24,13 @@ export class ServiciomercanciaService {
 
   }
 
+  consultarMercancia(id:number):Observable<any>{
+
+    let uri=`http://localhost:8080/api/tcc/mercancias/${id}`
+    return this.peticion.get(uri)
+    
+
+  }
+
 
 }

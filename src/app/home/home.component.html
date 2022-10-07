@@ -2,26 +2,42 @@
 
 <div class="container-fluid mt-3">
     <div class="row">
-        <div class="col-6 border-end">
+        <div class="col-12 col-md-6 border-end">
             <app-formularioregistro></app-formularioregistro>
 
         </div>
-        <div class="col-6">
+        <div class="col-12 col-md-6">
             <div>
-                <h2 class="mb-5">Mercancias: </h2>
-                <div *ngFor="let dato of datosZona" class="row row-cols-1 row-cols-md-2">
-                    <div *ngFor="let mercancia of dato.mercancias" class="col">
+                <div class="row my-2">
+                    <div class="col-12 col-md-6">
+                        <h2 class="fw-bold">Estado del cuarto:</h2>
+                        
+                        <app-graficabarras></app-graficabarras>
+                        
+                    </div>
+                </div>
+
+                <h2 class="my-3 fw-bold">Mercancias en Cuarto: </h2>
+                <div *ngFor="let dato of datosZona" class="row row-cols-1 row-cols-md-2 g-3">
+                    <div *ngFor="let mercancia of dato.mercancias" class="col my-3">
                         <div class="card h-100">
                             <h2 class="text-center text-muted my-3">Zona: {{dato.id}}</h2>
-                            <h4 class="text-center text-muted my-3">{{mercancia.nombre}}</h4>
+                            <h3 class="text-center text-success">IUP: {{mercancia.iup}}</h3>
+                            <h4 class="text-center text-muted">{{mercancia.nombre}}</h4>
+                            <h4 class="text-center text-muted">volumen ocupado: {{mercancia.volumen}} u3</h4>
                             <button class="btn btn-primary mx-2 my-2">Retirar</button>
                         </div>
                     </div>
                 </div>
-            
             </div>
+            
+            
+
+    
         </div>
     </div>
+
+
     
 </div>
 

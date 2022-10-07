@@ -34,7 +34,7 @@ export class FormularioregistroComponent implements OnInit {
   buscarMercancia(){
     console.log("buscando...");
     console.log(this.formulario.value.iup)
-    this.servicio.consultarMercancias(this.formulario.value.iup)
+    this.servicio.consultarMercancia(this.formulario.value.iup)
     .subscribe(respuesta=>{
       console.log(respuesta);
       this.formulario.patchValue({
