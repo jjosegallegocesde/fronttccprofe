@@ -16,7 +16,9 @@ export class ServiciomercanciaService {
 
   consultarMercancias(id:number):Observable<any>{
 
-    let uri=`http://localhost:8080/api/tcc/mercancias/${id}`
+    //let uri=`http://localhost:8080/api/tcc/mercancias/${id}`
+
+    let uri="http://localhost:8080/api/tcc/zonas"
 
     return this.peticion.get(uri)
 

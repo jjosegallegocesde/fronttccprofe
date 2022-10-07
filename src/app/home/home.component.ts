@@ -8,10 +8,19 @@ import { ServiciomercanciaService } from '../services/serviciomercancia.service'
 })
 export class HomeComponent implements OnInit {
 
-  constructor() {
+  datosZona:any[]=[]
+
+  constructor(public servicio:ServiciomercanciaService) {
+
+    servicio.consultarMercancias(5)
+    .subscribe(respuesta=>{
+      console.log(respuesta);
+      this.datosZona=respuesta
+    })
 
 
   }
+
 
   ngOnInit(): void {
   }

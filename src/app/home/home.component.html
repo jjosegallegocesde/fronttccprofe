@@ -2,12 +2,24 @@
 
 <div class="container-fluid mt-3">
     <div class="row">
-        <div class="col-6">
+        <div class="col-6 border-end">
             <app-formularioregistro></app-formularioregistro>
 
         </div>
         <div class="col-6">
-            <img src="../../assets/foto.jpg" alt="img" class="img-fluid w-100">
+            <div>
+                <h2 class="mb-5">Mercancias: </h2>
+                <div *ngFor="let dato of datosZona" class="row row-cols-1 row-cols-md-2">
+                    <div *ngFor="let mercancia of dato.mercancias" class="col">
+                        <div class="card h-100">
+                            <h2 class="text-center text-muted my-3">Zona: {{dato.id}}</h2>
+                            <h4 class="text-center text-muted my-3">{{mercancia.nombre}}</h4>
+                            <button class="btn btn-primary mx-2 my-2">Retirar</button>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
         </div>
     </div>
     
