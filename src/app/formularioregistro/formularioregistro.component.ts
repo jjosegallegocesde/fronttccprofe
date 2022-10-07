@@ -24,33 +24,47 @@ export class FormularioregistroComponent implements OnInit {
   }
 
   buscarMercancia(){
+   
     this.servicio.consultarMercancia(this.formulario.value.iup)
-    .subscribe(respuesta=>{
-
-      console.log(respuesta);
+    .subscribe(
       
-     
-      this.formulario.patchValue({
+      respuesta=>{
+
+        console.log(respuesta);
         
-
-        tiporemitente:respuesta.tipoRemitente,
-        idremitente:respuesta.idRemitente,
-        nombreremitente:respuesta.nombreRemitente,
-        deptoremitente:respuesta.deptoRemitente,
-        municipioremitente:respuesta.municipioRemitente,
-        direccionremitente:respuesta.direccionRemitente,
-
-        tipodestinatario:respuesta.tipoDestinatario,
-        iddestinatario:respuesta.idDestinatario,
-        nombredestinatario:respuesta.nombreDestinatario,
-        deptodestinatario:respuesta.deptoDestinatario,
-        municipiodestinatario:respuesta.municipioDestinatario,
-        direcciondestinatario:respuesta.direccionDestinatario,
-
-        
-      })
       
-    })
+        this.formulario.patchValue({
+          
+
+          tiporemitente:respuesta.tipoRemitente,
+          idremitente:respuesta.idRemitente,
+          nombreremitente:respuesta.nombreRemitente,
+          deptoremitente:respuesta.deptoRemitente,
+          municipioremitente:respuesta.municipioRemitente,
+          direccionremitente:respuesta.direccionRemitente,
+
+          tipodestinatario:respuesta.tipoDestinatario,
+          iddestinatario:respuesta.idDestinatario,
+          nombredestinatario:respuesta.nombreDestinatario,
+          deptodestinatario:respuesta.deptoDestinatario,
+          municipiodestinatario:respuesta.municipioDestinatario,
+          direcciondestinatario:respuesta.direccionDestinatario,
+
+          
+        })
+
+        this.formulario.disable()
+        this.formulario.controls['iup'].enable()
+        
+      
+    },
+    error=>{
+      this.formulario.enable()
+      console.log(error.error)
+    }
+    
+    
+    )
     
     
   }
