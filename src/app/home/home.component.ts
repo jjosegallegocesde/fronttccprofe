@@ -1,3 +1,4 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ServiciomercanciaService } from '../services/serviciomercancia.service';
 
@@ -18,6 +19,20 @@ export class HomeComponent {
       this.datosZona=respuesta
     })
 
+
+  }
+
+  public retirar(mercancia:any):void{
+
+    
+
+    console.log("retirando"+ mercancia);
+    this.servicio.retirarMercancia(mercancia)
+    .subscribe(respuesta=>{
+      console.log(respuesta);
+      
+    })
+    
 
   }
 

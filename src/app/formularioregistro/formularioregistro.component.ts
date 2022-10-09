@@ -11,16 +11,24 @@ export class FormularioregistroComponent implements OnInit {
 
   formulario!:FormGroup;
 
+  datos:any[]=[];
+
+  bandera:boolean=false;
+
   constructor(
     public fabricaDiccionario:FormBuilder,
     public servicio:ServiciomercanciaService
     
-    ) { }
+    ) {}
 
   ngOnInit(): void {
-
     this.formulario=this.inicializarFormulario()
-
+    this.servicio.consultarMercancias(5)
+      .subscribe(respuesta=>{
+        this.datos = respuesta.map((zona:any)=>{
+        return {id:zona.id}
+      })
+    })
   }
 
   buscarMercancia(){
@@ -31,11 +39,9 @@ export class FormularioregistroComponent implements OnInit {
       respuesta=>{
 
         console.log(respuesta);
-        
-      
+        this.bandera=false
         this.formulario.patchValue({
           
-
           tiporemitente:respuesta.tipoRemitente,
           idremitente:respuesta.idRemitente,
           nombreremitente:respuesta.nombreRemitente,
@@ -50,15 +56,19 @@ export class FormularioregistroComponent implements OnInit {
           municipiodestinatario:respuesta.municipioDestinatario,
           direcciondestinatario:respuesta.direccionDestinatario,
 
+          //zonaOcupada:'2'
+
           
         })
 
         this.formulario.disable()
         this.formulario.controls['iup'].enable()
+        this.formulario.controls['zonaOcupada'].enable()
         
       
     },
     error=>{
+      this.bandera=true
       this.formulario.enable()
       console.log(error.error)
     }
@@ -70,7 +80,22 @@ export class FormularioregistroComponent implements OnInit {
   }
 
   public analizarFormulario():void{
-    console.log(this.formulario.value)
+
+    let datos=this.formulario.value
+    let zona={
+      id:this.formulario.value.zonaOcupada
+    }
+    datos.volumen=10
+    datos.zona=zona
+
+    
+    this.servicio.registrarMercancia(datos)
+      .subscribe(respuesta=>{
+        console.log(respuesta)
+        window.location.reload()
+      }
+      
+      )
   }
 
   public inicializarFormulario():FormGroup{
@@ -88,6 +113,7 @@ export class FormularioregistroComponent implements OnInit {
       deptodestinatario:['',[Validators.required]],
       municipiodestinatario:['',[Validators.required]],
       direcciondestinatario:['',[Validators.required]],
+      zonaOcupada:['2']
     })
   }
 

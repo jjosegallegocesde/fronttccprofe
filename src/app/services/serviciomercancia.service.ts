@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http'
+import {HttpClient, HttpHeaders} from '@angular/common/http'
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -30,6 +30,22 @@ export class ServiciomercanciaService {
     return this.peticion.get(uri)
     
 
+  }
+
+  registrarMercancia(datos:any):Observable<any>{
+    
+    let uri="http://localhost:8080/api/tcc/mercancias"
+    return this.peticion.post(uri,datos)
+  }
+
+  retirarMercancia(iup:any):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Access-Control-Allow-Origin': '*'
+      })
+    };
+    let uri=`http://localhost:8080/api/tcc/mercancias/${iup}`
+    return this.peticion.delete(uri,httpOptions)
   }
 
 
